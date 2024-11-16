@@ -1,0 +1,32 @@
+<div class="form-container">
+    <h2 class="form-title">{{ edicion ? 'Editar Precio de Especialidad' : 'Registrar Precio de Especialidad' }}</h2>
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
+      <div class="form-group">
+        <label for="especialidad">Especialidad</label>
+        <select id="especialidad" formControlName="especialidad">
+          <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
+            {{ especialidad.nombre }}
+          </option>
+        </select>
+        <div class="error-message" *ngIf="form.get('especialidad')?.touched && form.get('especialidad')?.invalid">
+          La especialidad es obligatoria.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="precio">Precio</label>
+        <input id="precio" type="number" formControlName="precio" />
+        <div class="error-message" *ngIf="form.get('precio')?.touched && form.get('precio')?.invalid">
+          El precio es obligatorio.
+        </div>
+      </div>
+  
+      <div class="button-group">
+        <button type="submit">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+        <button type="button" (click)="cancelar()">Cancelar</button>
+      </div>
+  
+      <p>{{ mensaje }}</p>
+    </form>
+  </div>
+  
