@@ -1,0 +1,66 @@
+<div class="container" *ngIf="role === 'ADMIN'">
+  <h2>Lista de Doctores</h2>
+  <div class="header-actions">
+    <div class="container-buttons">
+      <button class="add-button" (click)="addDoctor()">Agregar Doctor +</button>
+      <button class="add-button" (click)="navHorarios()">Agregar Horario +</button>
+    </div>
+    <div class="search-container">
+      <span class="search-icon"><mat-icon>search</mat-icon></span>
+      <input matInput (keyup)="filter($event)" placeholder="Buscar" class="input-busqueda">
+    </div>
+  </div>
+  <br>
+
+  <div *ngIf="paginatedData.length === 0; else dataTable">
+    <div class="no-data-container">
+      <img src="assets/img/no-data.png" alt="No hay datos" class="no-data-image">
+      <p>No hay doctores disponibles.</p>
+    </div>
+  </div>
+
+  <ng-template #dataTable>
+    <div class="table-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Número de Colegiatura</th>
+            <th>Correo</th>
+            <th>Celular</th>
+            <th>Especialidad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doctor of paginatedData">
+            <td>{{ doctor.id }}</td>
+            <td>{{ doctor.nombre }}</td>
+            <td>{{ doctor.numeroColegiatura }}</td>
+            <td>{{ doctor.correo }}</td>
+            <td>{{ doctor.celular }}</td>
+            <td>{{ doctor.especialidad.nombre }}</td>
+            <td>
+              <button class="custom-button" (click)="editarDoctor(doctor.id)">
+                <mat-icon>create</mat-icon>
+              </button>
+              <button class="custom-delete-button" (click)="eliminarDoctor(doctor.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination-controls">
+      <button (click)="previousPage()" [disabled]="currentPage === 1"><</button>
+      <span>Página {{ currentPage }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= totalItems">></button>
+      <span class="items-per-page">Mostrar páginas:</span>
+      <select (change)="changePageSize($event)" class="custom-select">
+        <option *ngFor="let size of [5, 10, 25, 100]" [value]="size">{{ size }}</option>
+      </select>
+    </div>
+  </ng-template>
+</div>

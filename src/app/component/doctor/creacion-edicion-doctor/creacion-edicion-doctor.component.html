@@ -1,0 +1,53 @@
+<div class="form-container">
+  <h2 class="form-title">{{ edicion ? 'Editar Doctor' : 'Registrar Doctor' }}</h2>
+  <form [formGroup]="form" (ngSubmit)="aceptar()">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" formControlName="nombre" />
+      <div class="error-message" *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="numeroColegiatura">Número de Colegiatura</label>
+      <input id="numeroColegiatura" type="number" formControlName="numeroColegiatura" />
+      <div class="error-message" *ngIf="form.get('numeroColegiatura')?.touched && form.get('numeroColegiatura')?.invalid">
+        El número de colegiatura es obligatorio.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="correo">Correo</label>
+      <input id="correo" type="email" formControlName="correo" />
+      <div class="error-message" *ngIf="form.get('correo')?.touched && form.get('correo')?.invalid">
+        El correo es obligatorio y debe ser válido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="celular">Celular</label>
+      <input id="celular" type="number" formControlName="celular" />
+      <div class="error-message" *ngIf="form.get('celular')?.touched && form.get('celular')?.invalid">
+        El celular es obligatorio.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="especialidad">Especialidad</label>
+      <select id="especialidad" formControlName="especialidad" class="custom-select">
+        <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">{{ especialidad.nombre }}</option>
+      </select>
+      <div class="error-message" *ngIf="form.get('especialidad')?.touched && form.get('especialidad')?.invalid">
+        La especialidad es obligatoria.
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="submit">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+      <button type="button" (click)="cancelar()">Cancelar</button>
+    </div>
+
+    <p>{{ mensaje }}</p>
+  </form>
+</div>

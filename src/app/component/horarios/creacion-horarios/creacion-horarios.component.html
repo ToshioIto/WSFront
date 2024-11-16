@@ -1,0 +1,48 @@
+<div class="form-container">
+    <h2 class="form-title">{{ edicion ? 'Editar Horario' : 'Registrar Horario' }}</h2>
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
+      <div class="form-group">
+        <label for="turno">Turno</label>
+        <input id="turno" type="text" formControlName="turno" />
+        <div class="error-message" *ngIf="form.get('turno')?.touched && form.get('turno')?.invalid">
+          El turno es obligatorio.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="horaInicio">Hora Inicio</label>
+        <input id="horaInicio" type="time" formControlName="horaInicio" />
+        <div class="error-message" *ngIf="form.get('horaInicio')?.touched && form.get('horaInicio')?.invalid">
+          La hora de inicio es obligatoria.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="horaFin">Hora Fin</label>
+        <input id="horaFin" type="time" formControlName="horaFin" />
+        <div class="error-message" *ngIf="form.get('horaFin')?.touched && form.get('horaFin')?.invalid">
+          La hora de fin es obligatoria.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="doctor">Doctor</label>
+        <select id="doctor" formControlName="doctor">
+          <option *ngFor="let doctor of doctores" [value]="doctor.id">
+            {{ doctor.nombre }}
+          </option>
+        </select>
+        <div class="error-message" *ngIf="form.get('doctor')?.touched && form.get('doctor')?.invalid">
+          El doctor es obligatorio.
+        </div>
+      </div>
+  
+      <div class="button-group">
+        <button type="submit">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+        <button type="button" (click)="cancelar()">Cancelar</button>
+      </div>
+  
+      <p>{{ mensaje }}</p>
+    </form>
+  </div>
+  
