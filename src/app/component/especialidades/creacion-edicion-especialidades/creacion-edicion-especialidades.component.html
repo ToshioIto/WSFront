@@ -1,0 +1,27 @@
+<div class="form-container">
+  <h2 class="form-title">{{ edicion ? 'Editar Especialidad' : 'Registrar Especialidad' }}</h2>
+  <form [formGroup]="form" (ngSubmit)="aceptar()">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text" formControlName="nombre" />
+      <div class="error-message" *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <input id="descripcion" type="text" formControlName="descripcion" />
+      <div class="error-message" *ngIf="form.get('descripcion')?.touched && form.get('descripcion')?.invalid">
+        La descripción es obligatoria.
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="submit">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+      <button type="button" (click)="cancelar()">Cancelar</button>
+    </div>
+
+    <p>{{ mensaje }}</p>
+  </form>
+</div>
