@@ -1,0 +1,33 @@
+<nav class="navbar">
+    <div class="logo">WorkSolution</div>
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul [class.open]="menuOpen">
+        <li><a routerLink="/home" routerLinkActive="active">Inicio</a></li>
+        <li><a routerLink="/home/preguntas" routerLinkActive="active">Preguntas</a></li>
+        <li *ngIf="verificar()"><a routerLink="/home/citas" routerLinkActive="active">Citas</a></li>
+        <li *ngIf="verificar()"><a routerLink="/home/historial" routerLinkActive="active">Historial</a></li>
+        
+        <li *ngIf="!verificar()">
+            <a routerLink="/login" class="login-icon" aria-label="Iniciar Sesión">
+                <i class="fas fa-user"></i>
+            </a>
+        </li>
+        
+        <li *ngIf="verificar()">
+            <a routerLink="/home/historial" routerLinkActive="active" id="bye">Cerrar sesión</a>
+        </li>
+    </ul>
+    
+    <div class="dropdown-container" *ngIf="verificar()">
+        <button class="more-options-toggle" (click)="toggleMoreOptions()">
+            <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <ul class="more-options-menu" *ngIf="moreOptionsOpen">
+            <li><a routerLink="/components/home/ver-perfil" routerLinkActive="active">Ver mi perfil</a></li>
+            <li *ngIf="role === 'ADMIN'"><a routerLink="/components/doctor" routerLinkActive="active">Administración</a></li>
+            <li><a (click)="cerrar()">Cerrar sesión</a></li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,4 @@
+<app-sidebar *ngIf="showSidebar" (sidebarToggled)="onSidebarToggled($event)"></app-sidebar>
+<div class="main-content" [ngClass]="contentClass">
+  <router-outlet></router-outlet>
+</div>

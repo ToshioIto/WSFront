@@ -1,0 +1,53 @@
+<div class="container">
+  <h2>Historial de Citas Agendadas</h2>
+  <div class="header-actions">
+    <div class="search-container">
+      <span class="search-icon"><mat-icon>search</mat-icon></span>
+      <input matInput (keyup)="filter($event)" placeholder="Buscar" class="input-busqueda">
+    </div>
+  </div>
+  <br>
+
+  <div *ngIf="paginatedData.length === 0; else dataTable">
+    <div class="no-data-container">
+      <img src="assets/img/no-data.png" alt="No hay citas" class="no-data-image">
+      <p>No hay citas agendadas.</p>
+    </div>
+  </div>
+
+  <ng-template #dataTable>
+    <div class="table-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Especialidad</th>
+            <th>Doctor</th>
+            <th>Consultorio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cita of paginatedData">
+            <td>{{ cita.id }}</td>
+            <td>{{ cita.fechaHora | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ cita.fechaHora | date: 'HH:mm' }}</td>
+            <td>{{ cita.especialidad.nombre }}</td>
+            <td>{{ cita.doctor.nombre }}</td>
+            <td>{{ cita.consultorio.sede.direccion }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination-controls">
+      <button (click)="previousPage()" [disabled]="currentPage === 1"><</button>
+      <span>Página {{ currentPage }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= totalItems">></button>
+      <span class="items-per-page">Mostrar páginas:</span>
+      <select (change)="changePageSize($event)" class="custom-select">
+        <option *ngFor="let size of [5, 10, 25, 100]" [value]="size">{{ size }}</option>
+      </select>
+    </div>
+  </ng-template>
+</div>

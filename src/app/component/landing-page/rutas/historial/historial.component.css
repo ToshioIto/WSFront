@@ -1,0 +1,12 @@
+.no-data-container {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--secondary-text-color);
+}
+
+.no-data-image {
+    width: 150px;
+    height: auto;
+    margin-bottom: 16px;
+    opacity: 0.7;
+}

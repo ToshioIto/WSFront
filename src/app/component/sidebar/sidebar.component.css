@@ -1,0 +1,111 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow-x: hidden;
+  transition: width 0.4s ease, background-color 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.collapsed {
+  width: 70px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.profile {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+  margin: 0 auto;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  margin-bottom: 15px;
+}
+
+.menu li a {
+  color: var(--text-on-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s;
+}
+
+.menu li a:hover {
+  background-color: var(--hover-primary-color);
+  transform: translateX(5px);
+}
+
+.menu li a.active {
+  background-color: var(--highlight-color);
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.menu li a span {
+  display: inline-block;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar.collapsed .menu li a {
+  justify-content: center;
+  padding: 12px 10px;
+}
+
+.sidebar.collapsed .menu li a span {
+  display: none;
+}
+
+.logout-btn {
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  border: 2px solid var(--highlight-color);
+  padding: 12px 20px;
+  width: 80%;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  left: 10%;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-align: center;
+}
+
+.logout-btn:hover {
+  border: 2px solid var(--hover-primary-color);
+  background-color: var(--hover-primary-color);
+  color: var(--text-on-primary);
+}
+
+.menu-item-center a {
+  justify-content: center;
+}
+
+.menu-item-center a span {
+  text-align: center;
+}

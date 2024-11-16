@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión</title>
+</head>
+<body>
+  <div class="login-container">
+    <div class="form-card">
+      <h1 class="form-title">Iniciar Sesión</h1>
+      <div class="input-container">
+        <mat-icon class="input-icon">person</mat-icon>
+        <input matInput type="text" placeholder="Username" [(ngModel)]="username" />
+      </div>
+      <div class="input-container">
+        <mat-icon class="input-icon">lock</mat-icon>
+        <input type="password" matInput placeholder="Password" [(ngModel)]="password" />
+      </div>
+      <div class="button-container">
+        <button class="mi-boton" (click)="login()">Iniciar sesión</button><br>
+        <p class="description">¿Aún no cuentas con una cuenta? <span class="register-link" routerLink="/registro">Regístrate</span></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

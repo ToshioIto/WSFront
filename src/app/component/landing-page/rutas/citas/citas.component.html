@@ -1,0 +1,74 @@
+<div class="form-container">
+  <h2 class="form-title">{{ edicion ? 'Editar Cita Médica' : 'Registro Cita Médica' }}</h2>
+  
+  <div class="form-content">
+    <div class="image-column">
+      <div class="image-placeholder">
+        <img src="assets/img/doctor.png" alt="Imagen de Registro" class="image" />
+      </div>
+    </div>
+
+    <div class="form-column">
+      <form [formGroup]="form" (ngSubmit)="aceptar()">
+        <div class="form-group">
+          <label for="fecha">Fecha</label>
+          <input id="fecha" type="date" formControlName="fecha" />
+          <div class="error-message" *ngIf="form.get('fecha')?.touched && form.get('fecha')?.invalid">
+            La fecha es obligatoria.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="hora">Hora</label>
+          <input id="hora" type="time" formControlName="hora" />
+          <div class="error-message" *ngIf="form.get('hora')?.touched && form.get('hora')?.invalid">
+            La hora es obligatoria.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="especialidad">Especialidad</label>
+          <select id="especialidad" formControlName="especialidad">
+            <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
+              {{ especialidad.nombre }}
+            </option>
+          </select>
+          <div class="error-message" *ngIf="form.get('especialidad')?.touched && form.get('especialidad')?.invalid">
+            La especialidad es obligatoria.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="doctor">Doctor</label>
+          <select id="doctor" formControlName="doctor">
+            <option *ngFor="let doctor of doctores" [value]="doctor.id">
+              {{ doctor.nombre }}
+            </option>
+          </select>
+          <div class="error-message" *ngIf="form.get('doctor')?.touched && form.get('doctor')?.invalid">
+            El doctor es obligatorio.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="consultorio">Consultorio</label>
+          <select id="consultorio" formControlName="consultorio">
+            <option *ngFor="let consultorio of consultorios" [value]="consultorio.id">
+              sede: {{ consultorio.sede.nombre }} - dirección: {{ consultorio.sede.direccion }}
+            </option>
+          </select>
+          <div class="error-message" *ngIf="form.get('consultorio')?.touched && form.get('consultorio')?.invalid">
+            El consultorio es obligatorio.
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button type="submit">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+          <button type="button" *ngIf="showCancelButton" (click)="cancelar()">Cancelar</button>
+        </div>
+
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </div>
+</div>

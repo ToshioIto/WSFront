@@ -1,0 +1,38 @@
+<div *ngIf="isVisible" [ngClass]="{'collapsed': isCollapsed}" class="sidebar">
+  <div class="profile" *ngIf="!isCollapsed">
+    <img src="assets/perfil-doctor.png" alt="Profile Picture">
+  </div>
+  <ul class="menu">
+    <li class="menu-item-center no-scale-hover">
+      <a routerLink="/home" routerLinkActive="active">
+        <mat-icon>home</mat-icon>
+        <span *ngIf="!isCollapsed">Inicio</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/doctor" routerLinkActive="active">
+        <mat-icon>people</mat-icon>
+        <span *ngIf="!isCollapsed">Doctores</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/especialidades" routerLinkActive="active">
+        <mat-icon>list</mat-icon>
+        <span *ngIf="!isCollapsed">Especialidades</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/sedes" routerLinkActive="active">
+        <mat-icon>location_on</mat-icon>
+        <span *ngIf="!isCollapsed">Sedes</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/consultorio" routerLinkActive="active">
+        <mat-icon>description</mat-icon>
+        <span *ngIf="!isCollapsed">Consultorio</span>
+      </a>
+    </li>
+  </ul>
+  <button *ngIf="!isCollapsed" class="logout-btn" (click)="cerrar()">Cerrar sesión</button>
+</div>
